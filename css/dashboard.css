@@ -1,0 +1,108 @@
+:root {
+    --primary-font: "Poppins" , sans serif;
+    --primary-background: #f0f0f0;
+    --primary-background-secondary: #efd5c9;
+    --alternative-background: #333333;
+    --primary-background-secondary: #efd5c9;
+
+}
+
+body {
+    font-family: var(--primary-font);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    /*background-color: #e5e5f7;*/
+    background-color: #e5e5f7;
+    opacity: 0.6;
+    background-image: radial-gradient(#d8bfb4 2px, transparent 2px), radial-gradient(#d8bfb4 2px, #e5e5f7 2px);
+    background-size: 80px 80px;
+    background-position: 0 0, 40px 40px;
+}
+
+
+.logout-widget {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+.dashboard-title {
+    align-items: center;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(100px);
+    transition: opacity 1s ease, transform 1s ease;
+    pointer-events: none; /* Deshabilitar eventos de puntero cuando están ocultos */
+}
+  
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto; /* Habilitar eventos de puntero cuando son visibles */
+}
+  
+
+.main {
+    margin-top: 5em;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+.login {
+    color: #8c8c8c;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#queendom-logo {
+    padding: 30px;
+}
+
+input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 8px;
+    color: var(--primary-background-secondary);
+    font-weight: bolder;
+}
+
+input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 8px;
+    color: var(--primary-background-secondary);
+    font-weight: bolder;
+}
+
+.button {
+    background-color: var(--primary-background-secondary); /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 8px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }

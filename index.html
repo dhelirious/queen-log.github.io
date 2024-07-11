@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Login To Your CMS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> <!--Google Fonts-->
+    <link rel="stylesheet" href="./css/login.css">
+    <script src="./js/login.js"></script> <!--Login Script-->
+</head>
+<body>
+    <div class="background">
+        <div class="main reveal">
+            <img src="./img/queendomlogo.png" alt="queendom-logo" style="height: 200px; width: 200px;" id="queendom-logo">
+            <form action="">
+                <div class="login reveal">
+                    <label for="first">
+                        Username:
+                    </label>
+                    <input type="email" id="userEmail" placeholder="email" required>
+                    <label for="password">
+                        Password:
+                    </label>
+                    <input type="password" id="userPassword" placeholder="password" required>
+                    <div class="wrap">
+                        <button type="button" id="signIn" class="button">
+                            LogIn
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyC8evJo9VIUCC0fN-w0t16MMMeCIlcgqTI",
+            authDomain: "estetica-cms-1bc7f.firebaseapp.com",
+            projectId: "estetica-cms-1bc7f",
+            storageBucket: "estetica-cms-1bc7f.appspot.com",
+            messagingSenderId: "1049669644240",
+            appId: "1:1049669644240:web:34ec4c03478a5a901b93d5",
+            measurementId: "G-6WR7BK0YJ2"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const analytics = getAnalytics(app);
+
+        const userEmail = document.querySelector("#userEmail");
+        const userPassword = document.querySelector("#userPassword");
+        const signInButton = document.querySelector("#signIn")
+
+        const userSignIn = async() => {
+            const signInEmail = userEmail.value;
+            const signInPassword = userPassword.value;
+            signInWithEmailAndPassword(auth, signInEmail, signInPassword)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                alert("Login exitoso!");
+                console.log("logged in! User: ")
+                window.location.href = "dashboard.html";
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                alert("Usuario o contraseña erróneos.");
+                console.log(errorCode + errorMessage)
+                console.log("Usuario o contraseña erróneos.")
+            })
+        }
+        signInButton.addEventListener('click', userSignIn)
+
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                // El usuario está autenticado, redirigir a otra página
+                window.location.href = "dashboard.html";
+            } else {
+                // El usuario no está autenticado, puedes redirigirlo a la página de login o hacer otra acción
+                window.location.href = "index.html";
+            }
+        });
+    </script>
+</body>
+</html>
